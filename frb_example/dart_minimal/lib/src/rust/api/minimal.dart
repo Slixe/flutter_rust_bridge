@@ -8,3 +8,24 @@ import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
 Future<int> minimalAdder({required int a, required int b}) =>
     RustLib.instance.api.crateApiMinimalMinimalAdder(a: a, b: b);
+
+Future<Test> createWallet() =>
+    RustLib.instance.api.crateApiMinimalCreateWallet();
+
+// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Test>>
+abstract class Test implements RustOpaqueInterface {
+  String getAddressStr();
+
+  Future<bool> isOnline();
+
+  // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
+  static Future<Test> newInstance({required String wallet}) =>
+      RustLib.instance.api.crateApiMinimalTestNew(wallet: wallet);
+}
+
+enum Network {
+  mainnet,
+  testnet,
+  dev,
+  ;
+}

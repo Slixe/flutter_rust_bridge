@@ -4,7 +4,17 @@ version = "0.1.0"
 edition = "2021"
 
 [lib]
-crate-type = ["cdylib"]
+crate-type = ["lib", "cdylib", "staticlib"]
 
 [dependencies]
 flutter_rust_bridge = { path = "../../../frb_rust" }
+parking_lot = "0.12.1"
+log = "0.4"
+anyhow = "1"
+
+xelis_wallet = { git = "https://github.com/xelis-project/xelis-blockchain", branch = "dev", package = "xelis_wallet", default-features = false }
+xelis_common = { git = "https://github.com/xelis-project/xelis-blockchain", branch = "dev", package = "xelis_common" }
+
+[features]
+default = ["xelis_wallet/api_server"]
+network_handler = ["xelis_wallet/network_handler"]
